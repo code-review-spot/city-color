@@ -1,6 +1,7 @@
 {
 	"name": "city-color-gather"
 	"dependencies": {
-		"ya-csv": ">= 0.9.2"
+		"ya-csv": ">= 0.9.2",
+		"instagram-node-lib": ">= 0.1.1"
 	}
 }
