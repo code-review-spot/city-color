@@ -18,12 +18,13 @@ washington.locations[0] = {};
 washington.locations[0].lat = "38.895111";
 washington.locations[0].long = "-77.036667";
 washington.locations[0].distance = "5000"; //meters
-
-
-
 Instagram.set('client_id',  config.instagram_client_id);
 
-getData(washington, 0, onResults);
+
+module.exports.run = function(){
+	getData(washington, 0, onResults);
+}
+
 
 function getData(city, loc){
 	var options = 
