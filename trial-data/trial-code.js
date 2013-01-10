@@ -916,8 +916,7 @@ function processImage(data){
 					for(var y=0; y<306; y++){
 
 						var pixel = png.getPixel(x,y);
-						var Rt = (pixel >>> 8) & 0xFF;
-						Ra+= Rt;
+						Ra+= (pixel >>> 16) & 0xFF;
 						Ga+= (pixel >>> 8) & 0xFF;
 						Ba+= pixel & 0xFF;
 						Ca++;
