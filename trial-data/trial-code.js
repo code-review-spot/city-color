@@ -934,8 +934,8 @@ function processImage(data){
 
 				data.colors = {};
 				data.colors.R = R/C;
-				data.colors.G = (G/C).toFixed(4);
-				data.colors.B = (B/C).toFixed(4);
+				data.colors.G = G/C;
+				data.colors.B = B/C;
 				addRow(data);
 				
 			}
