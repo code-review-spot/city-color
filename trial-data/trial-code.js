@@ -1,6 +1,5 @@
 //REQUIRED MODULES
 var csv = require("ya-csv");
-var config = require("./config.js");
 var Instagram = require('instagram-node-lib');
 var http = require('http');
 var fs = require('fs');
@@ -8,159 +7,952 @@ var gd = require('gd');
 var easyimg = require('easyimage');
 
 
-//CITY DATA
-var washington = {};
-washington.csvPath = "./data/washington/data.csv";
-washington.imagesPath = "./data/washington/images/";
-washington.name = "Washington";
-washington.locations = [];
-washington.locations[0] = {};
-washington.locations[0].lat = "38.895111";
-washington.locations[0].long = "-77.036667";
-washington.locations[0].distance = "5000"; //meters
-Instagram.set('client_id',  config.instagram_client_id);
+//IMAGES
+var datas = {};
 
+//basketball group
+datas.basketball = [];
+datas.basketball = addDatas(datas.basketball, "basketball", "363933789292577117_13040751");
+datas.basketball = addDatas(datas.basketball, "basketball", "363934147671938940_36606972");
+datas.basketball = addDatas(datas.basketball, "basketball", "363934279137459679_4841246");
+datas.basketball = addDatas(datas.basketball, "basketball", "363934390354765198_8447360");
+datas.basketball = addDatas(datas.basketball, "basketball", "363934912579463074_9537648");
+datas.basketball = addDatas(datas.basketball, "basketball", "363935140162398120_9537648");
+datas.basketball = addDatas(datas.basketball, "basketball", "363935200669157153_812384");
+datas.basketball = addDatas(datas.basketball, "basketball", "363935220626529702_28718238");
+datas.basketball = addDatas(datas.basketball, "basketball", "363935708970373040_1944242");
+datas.basketball = addDatas(datas.basketball, "basketball", "363935715672941896_11289312");
+datas.basketball = addDatas(datas.basketball, "basketball", "363936029572992502_32242690");
+datas.basketball = addDatas(datas.basketball, "basketball", "363938991665051265_7896788");
+datas.basketball = addDatas(datas.basketball, "basketball", "363939472233467616_18538586");
+datas.basketball = addDatas(datas.basketball, "basketball", "363939492958384189_2540331");
+datas.basketball = addDatas(datas.basketball, "basketball", "363941674382392778_143595382");
+datas.basketball = addDatas(datas.basketball, "basketball", "363943443661596254_232369616");
+datas.basketball = addDatas(datas.basketball, "basketball", "363944813083627039_235078202");
+datas.basketball = addDatas(datas.basketball, "basketball", "363945167577849403_28718238");
+datas.basketball = addDatas(datas.basketball, "basketball", "363946903622652786_11895515");
+datas.basketball = addDatas(datas.basketball, "basketball", "363947026055304590_41781412");
+datas.basketball = addDatas(datas.basketball, "basketball", "363947320808320706_258088850");
+datas.basketball = addDatas(datas.basketball, "basketball", "363947386604749766_10505127");
+datas.basketball = addDatas(datas.basketball, "basketball", "363947445620237006_189551719");
+datas.basketball = addDatas(datas.basketball, "basketball", "363947869598767610_245258189");
+datas.basketball = addDatas(datas.basketball, "basketball", "363947912700969720_50214687");
+datas.basketball = addDatas(datas.basketball, "basketball", "363948264724583210_259955467");
+datas.basketball = addDatas(datas.basketball, "basketball", "363948564259048578_220057850");
+datas.basketball = addDatas(datas.basketball, "basketball", "363948831402546102_276897739");
+datas.basketball = addDatas(datas.basketball, "basketball", "363948919417215440_37084101");
+datas.basketball = addDatas(datas.basketball, "basketball", "363949689441297983_11779296");
+datas.basketball = addDatas(datas.basketball, "basketball", "363951508199217446_11552981");
+datas.basketball = addDatas(datas.basketball, "basketball", "363951715708477113_28718238");
+datas.basketball = addDatas(datas.basketball, "basketball", "363951904771151850_184858460");
+datas.basketball = addDatas(datas.basketball, "basketball", "364027210714072127_22203088");
+datas.basketball = addDatas(datas.basketball, "basketball", "364027577766367839_10218443");
+datas.basketball = addDatas(datas.basketball, "basketball", "364030495317042218_232369616");
+datas.basketball = addDatas(datas.basketball, "basketball", "364033754355382559_18776709");
+datas.basketball = addDatas(datas.basketball, "basketball", "364037469443294272_49106632");
+datas.basketball = addDatas(datas.basketball, "basketball", "364037625035658722_36242084");
+datas.basketball = addDatas(datas.basketball, "basketball", "364043234287161120_23866154");
+datas.basketball = addDatas(datas.basketball, "basketball", "364044824057173807_4739052");
+datas.basketball = addDatas(datas.basketball, "basketball", "364045045035306804_23866154");
+datas.basketball = addDatas(datas.basketball, "basketball", "364045815347369785_4739052");
+datas.basketball = addDatas(datas.basketball, "basketball", "364046465597282446_48377661");
+datas.basketball = addDatas(datas.basketball, "basketball", "364049360767877241_173879543");
+datas.basketball = addDatas(datas.basketball, "basketball", "364054609716785945_43220203");
+datas.basketball = addDatas(datas.basketball, "basketball", "364058023163659762_12829928");
+datas.basketball = addDatas(datas.basketball, "basketball", "364069448127842318_18993809");
+datas.basketball = addDatas(datas.basketball, "basketball", "364070692503441220_13344882");
+datas.basketball = addDatas(datas.basketball, "basketball", "364081173423261465_12829928");
+datas.basketball = addDatas(datas.basketball, "basketball", "364082279134070572_12829928");
+datas.basketball = addDatas(datas.basketball, "basketball", "364082804940408630_12829928");
+datas.basketball = addDatas(datas.basketball, "basketball", "364084593391620777_181219915");
+datas.basketball = addDatas(datas.basketball, "basketball", "364084916982187855_12829928");
+datas.basketball = addDatas(datas.basketball, "basketball", "364085180434797235_181219915");
+datas.basketball = addDatas(datas.basketball, "basketball", "364086956462494414_181219915");
 
-module.exports.run = function(){
-	getData(washington, 0, onResults);
-}
+//misc
+datas.misc = [];
+datas.misc = addDatas(datas.misc, "misc", "364044849036612777_282922260");
+datas.misc = addDatas(datas.misc, "misc", "364046821768778955_282922260");
+datas.misc = addDatas(datas.misc, "misc", "364046917548864572_20846244");
+datas.misc = addDatas(datas.misc, "misc", "364047625682638049_282922260");
+datas.misc = addDatas(datas.misc, "misc", "364048586295694573_282922260");
+datas.misc = addDatas(datas.misc, "misc", "364049110701135091_282922260");
+datas.misc = addDatas(datas.misc, "misc", "364049859370385784_11634959");
+datas.misc = addDatas(datas.misc, "misc", "364061057445182583_182601198");
+datas.misc = addDatas(datas.misc, "misc", "364062737189386820_41047125");
+datas.misc = addDatas(datas.misc, "misc", "364063584279411277_41047125");
+datas.misc = addDatas(datas.misc, "misc", "364064443767798362_41047125");
+datas.misc = addDatas(datas.misc, "misc", "364065345836312115_11061688");
+datas.misc = addDatas(datas.misc, "misc", "364076126842839613_32982743");
+datas.misc = addDatas(datas.misc, "misc", "364076371297194090_177609627");
+datas.misc = addDatas(datas.misc, "misc", "364085450412082416_238508280");
+datas.misc = addDatas(datas.misc, "misc", "364086101881265745_17699742");
+datas.misc = addDatas(datas.misc, "misc", "364086413841211915_181140839");
+datas.misc = addDatas(datas.misc, "misc", "364090734855876926_19496563");
+datas.misc = addDatas(datas.misc, "misc", "364091945662283677_399606");
+datas.misc = addDatas(datas.misc, "misc", "364094866554952800_241775838");
+datas.misc = addDatas(datas.misc, "misc", "364097309454507358_11363462");
+datas.misc = addDatas(datas.misc, "misc", "364097889769125291_53232588");
+datas.misc = addDatas(datas.misc, "misc", "364100147461559589_277756860");
+datas.misc = addDatas(datas.misc, "misc", "364102646628158707_175130834");
+datas.misc = addDatas(datas.misc, "misc", "364105054914379222_37761566");
+datas.misc = addDatas(datas.misc, "misc", "364116570627157120_20826066");
+datas.misc = addDatas(datas.misc, "misc", "364118208469314704_20826066");
+datas.misc = addDatas(datas.misc, "misc", "364122336185095107_284746603");
+datas.misc = addDatas(datas.misc, "misc", "364124197200865684_8209617");
+datas.misc = addDatas(datas.misc, "misc", "364125575085364195_284746603");
+datas.misc = addDatas(datas.misc, "misc", "364127682345636847_284746603");
+datas.misc = addDatas(datas.misc, "misc", "364130798571389647_18002079");
+datas.misc = addDatas(datas.misc, "misc", "364132695337438145_179458169");
+datas.misc = addDatas(datas.misc, "misc", "364133032750494060_4351291");
+datas.misc = addDatas(datas.misc, "misc", "364133353413423476_4351291");
+datas.misc = addDatas(datas.misc, "misc", "364134363136055926_21298893");
+datas.misc = addDatas(datas.misc, "misc", "364134685600890105_210787286");
+datas.misc = addDatas(datas.misc, "misc", "364135444685009281_4351291");
+datas.misc = addDatas(datas.misc, "misc", "364136529250993192_144744080");
+datas.misc = addDatas(datas.misc, "misc", "364143090531872111_20826066");
+datas.misc = addDatas(datas.misc, "misc", "364145834315038899_50214687");
+datas.misc = addDatas(datas.misc, "misc", "364145887280487825_11509470");
+datas.misc = addDatas(datas.misc, "misc", "364150207288000720_50214687");
+datas.misc = addDatas(datas.misc, "misc", "364163255406412973_144744080");
+datas.misc = addDatas(datas.misc, "misc", "364370668888230174_31932529");
+datas.misc = addDatas(datas.misc, "misc", "364372374383686133_23076723");
+datas.misc = addDatas(datas.misc, "misc", "364373036624630381_15798955");
+datas.misc = addDatas(datas.misc, "misc", "364373503459063380_2918964");
+datas.misc = addDatas(datas.misc, "misc", "364373695522030418_281466423");
+datas.misc = addDatas(datas.misc, "misc", "364374146888993085_31932529");
+datas.misc = addDatas(datas.misc, "misc", "364375077666030155_52914735");
+datas.misc = addDatas(datas.misc, "misc", "364378672197807075_15141289");
+datas.misc = addDatas(datas.misc, "misc", "364379753807356055_28900519");
+datas.misc = addDatas(datas.misc, "misc", "364380387836996952_243067346");
+datas.misc = addDatas(datas.misc, "misc", "364380917726775349_21910577");
+datas.misc = addDatas(datas.misc, "misc", "364380928124550746_213869766");
+datas.misc = addDatas(datas.misc, "misc", "364381113785016087_2590278");
+datas.misc = addDatas(datas.misc, "misc", "364381281158244445_12098913");
+datas.misc = addDatas(datas.misc, "misc", "364382408486442362_6213860");
+datas.misc = addDatas(datas.misc, "misc", "364382550310889805_251602153");
+datas.misc = addDatas(datas.misc, "misc", "364382957635044547_23045704");
+datas.misc = addDatas(datas.misc, "misc", "364383527173161655_16077623");
+datas.misc = addDatas(datas.misc, "misc", "364384459843628341_19742490");
+datas.misc = addDatas(datas.misc, "misc", "364384467818840343_7560191");
+datas.misc = addDatas(datas.misc, "misc", "364387245457246438_10582657");
+datas.misc = addDatas(datas.misc, "misc", "364387923686387603_24949410");
+datas.misc = addDatas(datas.misc, "misc", "364390269531040351_38150105");
+datas.misc = addDatas(datas.misc, "misc", "364392614737849248_183663689");
+datas.misc = addDatas(datas.misc, "misc", "364395363364735449_31932529");
+datas.misc = addDatas(datas.misc, "misc", "364397482210150253_212357992");
+datas.misc = addDatas(datas.misc, "misc", "364397631863254173_4513322");
+datas.misc = addDatas(datas.misc, "misc", "364398948807507925_26808230");
+datas.misc = addDatas(datas.misc, "misc", "364401027318536599_28646781");
+datas.misc = addDatas(datas.misc, "misc", "364401399318216716_219975287");
+datas.misc = addDatas(datas.misc, "misc", "364401857356229010_200748449");
+datas.misc = addDatas(datas.misc, "misc", "364402866194755258_18592826");
+datas.misc = addDatas(datas.misc, "misc", "364403567825914745_191422433");
+datas.misc = addDatas(datas.misc, "misc", "364405397994846417_10973565");
+datas.misc = addDatas(datas.misc, "misc", "364408372098279456_217481577");
+datas.misc = addDatas(datas.misc, "misc", "364409378323681712_16129979");
+datas.misc = addDatas(datas.misc, "misc", "364410158931164553_25247222");
+datas.misc = addDatas(datas.misc, "misc", "364412377078613068_11620432");
+datas.misc = addDatas(datas.misc, "misc", "364412632222607731_9394809");
+datas.misc = addDatas(datas.misc, "misc", "364414388189350471_46651105");
+datas.misc = addDatas(datas.misc, "misc", "364416141403013946_11274015");
+datas.misc = addDatas(datas.misc, "misc", "364416741381814355_182949397");
+datas.misc = addDatas(datas.misc, "misc", "364417613377506353_16494290");
+datas.misc = addDatas(datas.misc, "misc", "364418081048568653_54582119");
+datas.misc = addDatas(datas.misc, "misc", "364419747557168488_221544628");
+datas.misc = addDatas(datas.misc, "misc", "364420958650940492_194036582");
+datas.misc = addDatas(datas.misc, "misc", "364421182970382651_6761265");
+datas.misc = addDatas(datas.misc, "misc", "364423482565490203_5242076");
+datas.misc = addDatas(datas.misc, "misc", "364424292838399176_33507550");
+datas.misc = addDatas(datas.misc, "misc", "364425064959976672_52293080");
+datas.misc = addDatas(datas.misc, "misc", "364425744493414209_22225608");
+datas.misc = addDatas(datas.misc, "misc", "364427729709143450_16766892");
+datas.misc = addDatas(datas.misc, "misc", "364427963232044092_284552704");
+datas.misc = addDatas(datas.misc, "misc", "364428308465068300_261787569");
+datas.misc = addDatas(datas.misc, "misc", "364428556573858396_7421525");
+datas.misc = addDatas(datas.misc, "misc", "364428835000839917_280162202");
+datas.misc = addDatas(datas.misc, "misc", "364428900642072848_261787569");
+datas.misc = addDatas(datas.misc, "misc", "364429358189238886_7421525");
+datas.misc = addDatas(datas.misc, "misc", "364429891891705639_6203916");
+datas.misc = addDatas(datas.misc, "misc", "364431178024087028_4513322");
+datas.misc = addDatas(datas.misc, "misc", "364431329528492451_33201131");
+datas.misc = addDatas(datas.misc, "misc", "364431723745495875_3548825");
+datas.misc = addDatas(datas.misc, "misc", "364432006010020836_30400167");
+datas.misc = addDatas(datas.misc, "misc", "364432126629815270_30400167");
+datas.misc = addDatas(datas.misc, "misc", "364432905908382412_40017169");
+datas.misc = addDatas(datas.misc, "misc", "364433731375099651_7894634");
+datas.misc = addDatas(datas.misc, "misc", "364434538407099932_10957270");
+datas.misc = addDatas(datas.misc, "misc", "364436560965533827_175960255");
+datas.misc = addDatas(datas.misc, "misc", "364436979323966003_1781987");
+datas.misc = addDatas(datas.misc, "misc", "364437627193228867_270172270");
+datas.misc = addDatas(datas.misc, "misc", "364438159490872787_5740828");
+datas.misc = addDatas(datas.misc, "misc", "364439607288932653_283195649");
+datas.misc = addDatas(datas.misc, "misc", "364440320441105376_225628629");
+datas.misc = addDatas(datas.misc, "misc", "364440466225488894_2087423");
+datas.misc = addDatas(datas.misc, "misc", "364441041602375492_7894634");
+datas.misc = addDatas(datas.misc, "misc", "364441379265582895_23441284");
+datas.misc = addDatas(datas.misc, "misc", "364441384544987882_2009185");
+datas.misc = addDatas(datas.misc, "misc", "364441521813346927_231461429");
+datas.misc = addDatas(datas.misc, "misc", "364441762492046723_33507550");
+datas.misc = addDatas(datas.misc, "misc", "364441919554254463_46239796");
+datas.misc = addDatas(datas.misc, "misc", "364442099921886793_11790678");
+datas.misc = addDatas(datas.misc, "misc", "364442542076451532_268165117");
+datas.misc = addDatas(datas.misc, "misc", "364443110828779012_284999712");
+datas.misc = addDatas(datas.misc, "misc", "364443607497971526_23441284");
+datas.misc = addDatas(datas.misc, "misc", "364444570528243098_33507550");
+datas.misc = addDatas(datas.misc, "misc", "364445115201904859_153863");
+datas.misc = addDatas(datas.misc, "misc", "364445359760274987_5740828");
+datas.misc = addDatas(datas.misc, "misc", "364445436619509157_210813570");
+datas.misc = addDatas(datas.misc, "misc", "364446097404677496_46726362");
+datas.misc = addDatas(datas.misc, "misc", "364447107519875658_226152305");
+datas.misc = addDatas(datas.misc, "misc", "364448429151942213_5740828");
+datas.misc = addDatas(datas.misc, "misc", "364449837853032051_15242926");
+datas.misc = addDatas(datas.misc, "misc", "364450160050743862_28102601");
+datas.misc = addDatas(datas.misc, "misc", "364450532833086953_210813570");
+datas.misc = addDatas(datas.misc, "misc", "364451078202100569_231684001");
+datas.misc = addDatas(datas.misc, "misc", "364451211386467731_26657476");
+datas.misc = addDatas(datas.misc, "misc", "364451234010619345_33507550");
+datas.misc = addDatas(datas.misc, "misc", "364451600627111267_28863300");
+datas.misc = addDatas(datas.misc, "misc", "364451839558715714_242127209");
+datas.misc = addDatas(datas.misc, "misc", "364451953518181488_11497430");
+datas.misc = addDatas(datas.misc, "misc", "364452112859837852_26657476");
+datas.misc = addDatas(datas.misc, "misc", "364453284615587751_34768872");
+datas.misc = addDatas(datas.misc, "misc", "364453707820714540_41663729");
+datas.misc = addDatas(datas.misc, "misc", "364453725780724269_41663729");
+datas.misc = addDatas(datas.misc, "misc", "364454713099566272_20110270");
+datas.misc = addDatas(datas.misc, "misc", "364454959900700548_44065170");
+datas.misc = addDatas(datas.misc, "misc", "364455269360409561_31674037");
+datas.misc = addDatas(datas.misc, "misc", "364455373789477303_21983341");
+datas.misc = addDatas(datas.misc, "misc", "364455709247695208_32301177");
+datas.misc = addDatas(datas.misc, "misc", "364456220643443101_2737191");
+datas.misc = addDatas(datas.misc, "misc", "364457966671313736_2940077");
+datas.misc = addDatas(datas.misc, "misc", "364458850203053064_12456642");
+datas.misc = addDatas(datas.misc, "misc", "364458924604983134_55224928");
+datas.misc = addDatas(datas.misc, "misc", "364459077938957899_210813570");
+datas.misc = addDatas(datas.misc, "misc", "364459567463379530_40392411");
+datas.misc = addDatas(datas.misc, "misc", "364459694020922020_42356057");
+datas.misc = addDatas(datas.misc, "misc", "364460017569206467_24310739");
+datas.misc = addDatas(datas.misc, "misc", "364460353650966315_401294");
+datas.misc = addDatas(datas.misc, "misc", "364460864677878923_23112566");
+datas.misc = addDatas(datas.misc, "misc", "364460935689182618_235599262");
+datas.misc = addDatas(datas.misc, "misc", "364461392546512695_401294");
+datas.misc = addDatas(datas.misc, "misc", "364462270096394972_18617097");
+datas.misc = addDatas(datas.misc, "misc", "364462994081639900_5575186");
+datas.misc = addDatas(datas.misc, "misc", "364463753513024275_522445");
+datas.misc = addDatas(datas.misc, "misc", "364463940519498119_37331699");
+datas.misc = addDatas(datas.misc, "misc", "364463950853876396_18931321");
+datas.misc = addDatas(datas.misc, "misc", "364464071732386487_3675021");
+datas.misc = addDatas(datas.misc, "misc", "364464296157201980_43244304");
+datas.misc = addDatas(datas.misc, "misc", "364464738393957915_22322088");
+datas.misc = addDatas(datas.misc, "misc", "364465312485596761_33507550");
+datas.misc = addDatas(datas.misc, "misc", "364466501090740797_11985705");
+datas.misc = addDatas(datas.misc, "misc", "364466825462274096_229121525");
+datas.misc = addDatas(datas.misc, "misc", "364467055070389388_10199968");
+datas.misc = addDatas(datas.misc, "misc", "364467539878474574_23786915");
+datas.misc = addDatas(datas.misc, "misc", "364467803836502613_15798955");
+datas.misc = addDatas(datas.misc, "misc", "364468080424050165_10337358");
+datas.misc = addDatas(datas.misc, "misc", "364468857091606849_35737257");
+datas.misc = addDatas(datas.misc, "misc", "364469356910148556_6202365");
+datas.misc = addDatas(datas.misc, "misc", "364469437463622856_27475092");
+datas.misc = addDatas(datas.misc, "misc", "364469530673042032_178798603");
+datas.misc = addDatas(datas.misc, "misc", "364469930794057252_213869766");
+datas.misc = addDatas(datas.misc, "misc", "364470113076145758_26012458");
+datas.misc = addDatas(datas.misc, "misc", "364470185882838059_7579376");
+datas.misc = addDatas(datas.misc, "misc", "364470430936724333_23786915");
+datas.misc = addDatas(datas.misc, "misc", "364471124962020682_3494066");
+datas.misc = addDatas(datas.misc, "misc", "364471134950650742_23786915");
+datas.misc = addDatas(datas.misc, "misc", "364471524876470615_280185113");
+datas.misc = addDatas(datas.misc, "misc", "364472423560724264_17139302");
+datas.misc = addDatas(datas.misc, "misc", "364472682826022772_15242926");
+datas.misc = addDatas(datas.misc, "misc", "364472833500684954_199326447");
+datas.misc = addDatas(datas.misc, "misc", "364473017732681629_8192802");
+datas.misc = addDatas(datas.misc, "misc", "364473188341218468_145193806");
+datas.misc = addDatas(datas.misc, "misc", "364473194832331459_10327175");
+datas.misc = addDatas(datas.misc, "misc", "364473719070213211_21152384");
+datas.misc = addDatas(datas.misc, "misc", "364473888269170366_2873100");
+datas.misc = addDatas(datas.misc, "misc", "364473995030636394_257462760");
+datas.misc = addDatas(datas.misc, "misc", "364474701410481523_42478084");
+datas.misc = addDatas(datas.misc, "misc", "364475182990243229_12716292");
+datas.misc = addDatas(datas.misc, "misc", "364475198996933796_19742490");
+datas.misc = addDatas(datas.misc, "misc", "364475219941396400_42255642");
+datas.misc = addDatas(datas.misc, "misc", "364475341907416503_17319596");
+datas.misc = addDatas(datas.misc, "misc", "364475687010177899_1875131");
+datas.misc = addDatas(datas.misc, "misc", "364475721214848066_1269346");
+datas.misc = addDatas(datas.misc, "misc", "364476051765350340_27941810");
+datas.misc = addDatas(datas.misc, "misc", "364476087426626949_42478084");
+datas.misc = addDatas(datas.misc, "misc", "364476423489885623_6606956");
+datas.misc = addDatas(datas.misc, "misc", "364477251880909207_3276181");
+datas.misc = addDatas(datas.misc, "misc", "364477295643929557_29925841");
+datas.misc = addDatas(datas.misc, "misc", "364477676143261120_12716292");
+datas.misc = addDatas(datas.misc, "misc", "364478300087924163_12716292");
+datas.misc = addDatas(datas.misc, "misc", "364478309842723317_30400167");
+datas.misc = addDatas(datas.misc, "misc", "364479227978186163_11497430");
+datas.misc = addDatas(datas.misc, "misc", "364479366522082207_1875131");
+datas.misc = addDatas(datas.misc, "misc", "364479377178349529_8192802");
+datas.misc = addDatas(datas.misc, "misc", "364479853558100960_23786915");
+datas.misc = addDatas(datas.misc, "misc", "364480009203297671_1504810");
+datas.misc = addDatas(datas.misc, "misc", "364480614424621317_209104843");
+datas.misc = addDatas(datas.misc, "misc", "364481034786156815_209104843");
+datas.misc = addDatas(datas.misc, "misc", "364481091877667932_3523520");
+datas.misc = addDatas(datas.misc, "misc", "364481276081468398_23786915");
+datas.misc = addDatas(datas.misc, "misc", "364481613126949056_229121525");
+datas.misc = addDatas(datas.misc, "misc", "364481791311464597_15638569");
+datas.misc = addDatas(datas.misc, "misc", "364481793028797939_12716292");
+datas.misc = addDatas(datas.misc, "misc", "364482462926877255_186321899");
+datas.misc = addDatas(datas.misc, "misc", "364482862350562947_8757012");
+datas.misc = addDatas(datas.misc, "misc", "364483190649777206_30669602");
+datas.misc = addDatas(datas.misc, "misc", "364483755392546331_190206196");
+datas.misc = addDatas(datas.misc, "misc", "364484429678866205_271137778");
+datas.misc = addDatas(datas.misc, "misc", "364484444889279554_30669602");
+datas.misc = addDatas(datas.misc, "misc", "364484606493103647_197386956");
+datas.misc = addDatas(datas.misc, "misc", "364484613884309279_271137778");
+datas.misc = addDatas(datas.misc, "misc", "364484655778267064_32323998");
+datas.misc = addDatas(datas.misc, "misc", "364484743899344672_271137778");
+datas.misc = addDatas(datas.misc, "misc", "364484949773495067_183663689");
+datas.misc = addDatas(datas.misc, "misc", "364485101255364050_3494066");
+datas.misc = addDatas(datas.misc, "misc", "364485345536125440_12070265");
+datas.misc = addDatas(datas.misc, "misc", "364486017491430350_5222841");
+datas.misc = addDatas(datas.misc, "misc", "364486127768008380_25982780");
+datas.misc = addDatas(datas.misc, "misc", "364486368288042071_30669602");
+datas.misc = addDatas(datas.misc, "misc", "364486426190751811_29925841");
+datas.misc = addDatas(datas.misc, "misc", "364486649925965111_55423428");
+datas.misc = addDatas(datas.misc, "misc", "364486854280866172_200748449");
+datas.misc = addDatas(datas.misc, "misc", "364487344795645643_25982780");
+datas.misc = addDatas(datas.misc, "misc", "364487529497159885_262808897");
+datas.misc = addDatas(datas.misc, "misc", "364487587076106633_200748449");
+datas.misc = addDatas(datas.misc, "misc", "364487861274557230_4703469");
+datas.misc = addDatas(datas.misc, "misc", "364487861716599123_222425975");
+datas.misc = addDatas(datas.misc, "misc", "364487944145594765_200748449");
+datas.misc = addDatas(datas.misc, "misc", "364488408513938633_26318616");
+datas.misc = addDatas(datas.misc, "misc", "364488443425683134_8757012");
+datas.misc = addDatas(datas.misc, "misc", "364488575706429145_25982780");
+datas.misc = addDatas(datas.misc, "misc", "364489193283494599_267227151");
+datas.misc = addDatas(datas.misc, "misc", "364489236425015165_262556086");
+datas.misc = addDatas(datas.misc, "misc", "364491113546114457_33178320");
+datas.misc = addDatas(datas.misc, "misc", "364491520501491731_230462185");
+datas.misc = addDatas(datas.misc, "misc", "364492008610568015_28863300");
+datas.misc = addDatas(datas.misc, "misc", "364492108796783842_1269346");
+datas.misc = addDatas(datas.misc, "misc", "364492631856920173_12716292");
+datas.misc = addDatas(datas.misc, "misc", "364492798514603613_26777472");
+datas.misc = addDatas(datas.misc, "misc", "364492877157332728_8757012");
+datas.misc = addDatas(datas.misc, "misc", "364493743141358355_280709801");
+datas.misc = addDatas(datas.misc, "misc", "364494746803522216_233423601");
+datas.misc = addDatas(datas.misc, "misc", "364494921721325624_230462185");
+datas.misc = addDatas(datas.misc, "misc", "364495051743835783_12716292");
+datas.misc = addDatas(datas.misc, "misc", "364495316206612826_256764731");
+datas.misc = addDatas(datas.misc, "misc", "364495853979713284_53751038");
+datas.misc = addDatas(datas.misc, "misc", "364496291675443116_16494290");
+datas.misc = addDatas(datas.misc, "misc", "364496379612439751_27018528");
+datas.misc = addDatas(datas.misc, "misc", "364496944460197154_227169346");
+datas.misc = addDatas(datas.misc, "misc", "364496974186986163_48046965");
+datas.misc = addDatas(datas.misc, "misc", "364497086050323112_1928185");
+datas.misc = addDatas(datas.misc, "misc", "364497189247518020_8463712");
+datas.misc = addDatas(datas.misc, "misc", "364497396639666103_16494290");
+datas.misc = addDatas(datas.misc, "misc", "364497449049532493_230462185");
+datas.misc = addDatas(datas.misc, "misc", "364497723309109436_144019555");
+datas.misc = addDatas(datas.misc, "misc", "364498187515471962_230462185");
+datas.misc = addDatas(datas.misc, "misc", "364498389977167829_42814764");
+datas.misc = addDatas(datas.misc, "misc", "364498751515634218_189152665");
+datas.misc = addDatas(datas.misc, "misc", "364498826760956003_230462185");
+datas.misc = addDatas(datas.misc, "misc", "364498980899999748_181410595");
+datas.misc = addDatas(datas.misc, "misc", "364499089728492516_178798603");
+datas.misc = addDatas(datas.misc, "misc", "364499295682618763_183100696");
+datas.misc = addDatas(datas.misc, "misc", "364500186377217717_27661272");
+datas.misc = addDatas(datas.misc, "misc", "364501344492739283_12992325");
+datas.misc = addDatas(datas.misc, "misc", "364501348210230835_228323632");
+datas.misc = addDatas(datas.misc, "misc", "364501456169520659_1151586");
+datas.misc = addDatas(datas.misc, "misc", "364501554376488597_42478084");
+datas.misc = addDatas(datas.misc, "misc", "364501858488694425_42478084");
+datas.misc = addDatas(datas.misc, "misc", "364502642531130116_46964245");
+datas.misc = addDatas(datas.misc, "misc", "364503215101847701_230462185");
+datas.misc = addDatas(datas.misc, "misc", "364503702297636230_227169346");
+datas.misc = addDatas(datas.misc, "misc", "364504591017970534_1237049");
+datas.misc = addDatas(datas.misc, "misc", "364504746745022365_37182960");
+datas.misc = addDatas(datas.misc, "misc", "364504766348998024_5572764");
+datas.misc = addDatas(datas.misc, "misc", "364505085837539243_25982780");
+datas.misc = addDatas(datas.misc, "misc", "364505717408020219_173928340");
+datas.misc = addDatas(datas.misc, "misc", "364505750542549138_32507879");
+datas.misc = addDatas(datas.misc, "misc", "364505866235567163_2590278");
+datas.misc = addDatas(datas.misc, "misc", "364506330420161065_6766225");
+datas.misc = addDatas(datas.misc, "misc", "364506677943267589_261081083");
+datas.misc = addDatas(datas.misc, "misc", "364507226208474001_23913587");
+datas.misc = addDatas(datas.misc, "misc", "364507480516077767_230462185");
+datas.misc = addDatas(datas.misc, "misc", "364507527023887765_3523520");
+datas.misc = addDatas(datas.misc, "misc", "364507733408879515_23913587");
+datas.misc = addDatas(datas.misc, "misc", "364508143923227991_30669602");
+datas.misc = addDatas(datas.misc, "misc", "364508474180249811_230462185");
+datas.misc = addDatas(datas.misc, "misc", "364509700462537908_5259154");
+datas.misc = addDatas(datas.misc, "misc", "364510059308747376_31932529");
+datas.misc = addDatas(datas.misc, "misc", "364510491237193963_8341573");
+datas.misc = addDatas(datas.misc, "misc", "364511004704757784_47542421");
+datas.misc = addDatas(datas.misc, "misc", "364512357797742450_19359496");
+datas.misc = addDatas(datas.misc, "misc", "364512702175129640_181249363");
+datas.misc = addDatas(datas.misc, "misc", "364512765534667731_52914735");
+datas.misc = addDatas(datas.misc, "misc", "364512972455817380_42064107");
+datas.misc = addDatas(datas.misc, "misc", "364513197722916552_239633540");
+datas.misc = addDatas(datas.misc, "misc", "364513207654016350_19862552");
+datas.misc = addDatas(datas.misc, "misc", "364513410967048714_12840931");
+datas.misc = addDatas(datas.misc, "misc", "364514164845788899_29338790");
+datas.misc = addDatas(datas.misc, "misc", "364514627956393872_19359496");
+datas.misc = addDatas(datas.misc, "misc", "364515300374617993_8325390");
+datas.misc = addDatas(datas.misc, "misc", "364515398470970362_9195361");
+datas.misc = addDatas(datas.misc, "misc", "364515583627108473_30773079");
+datas.misc = addDatas(datas.misc, "misc", "364515798114567767_40967240");
+datas.misc = addDatas(datas.misc, "misc", "364515807442540160_1782084");
+datas.misc = addDatas(datas.misc, "misc", "364519512673921690_36362089");
+datas.misc = addDatas(datas.misc, "misc", "364521137271174257_25982780");
+datas.misc = addDatas(datas.misc, "misc", "364521994317735842_31367056");
+datas.misc = addDatas(datas.misc, "misc", "364522172021302790_6136368");
+datas.misc = addDatas(datas.misc, "misc", "364522638250837312_4010480");
+datas.misc = addDatas(datas.misc, "misc", "364523220105826141_179684738");
+datas.misc = addDatas(datas.misc, "misc", "364523353781840517_32575009");
+datas.misc = addDatas(datas.misc, "misc", "364523515801884853_47542421");
+datas.misc = addDatas(datas.misc, "misc", "364523573221533630_31367056");
+datas.misc = addDatas(datas.misc, "misc", "364526422580099123_31122141");
+datas.misc = addDatas(datas.misc, "misc", "364526674648487364_30301268");
+datas.misc = addDatas(datas.misc, "misc", "364526698370936376_48620746");
+datas.misc = addDatas(datas.misc, "misc", "364527865456210172_679075");
+datas.misc = addDatas(datas.misc, "misc", "364527894838629850_30301268");
+datas.misc = addDatas(datas.misc, "misc", "364528185196701430_7579376");
+datas.misc = addDatas(datas.misc, "misc", "364529193289510464_30669602");
+datas.misc = addDatas(datas.misc, "misc", "364531101930796371_193662732");
+datas.misc = addDatas(datas.misc, "misc", "364531241669110805_186018594");
+datas.misc = addDatas(datas.misc, "misc", "364532047981510820_7093007");
+datas.misc = addDatas(datas.misc, "misc", "364532530553129136_49368169");
+datas.misc = addDatas(datas.misc, "misc", "364532676162676847_238448257");
+datas.misc = addDatas(datas.misc, "misc", "364533666689516126_8353263");
+datas.misc = addDatas(datas.misc, "misc", "364534089592553099_9343022");
+datas.misc = addDatas(datas.misc, "misc", "364534697205487231_249783892");
+datas.misc = addDatas(datas.misc, "misc", "364535792528474334_1161231");
+datas.misc = addDatas(datas.misc, "misc", "364536532974337217_267331438");
+datas.misc = addDatas(datas.misc, "misc", "364536558442777712_357050");
+datas.misc = addDatas(datas.misc, "misc", "364536645221007068_105174");
+datas.misc = addDatas(datas.misc, "misc", "364538502107578625_1161231");
+datas.misc = addDatas(datas.misc, "misc", "364539262617869152_202545341");
+datas.misc = addDatas(datas.misc, "misc", "364539300219787309_1219421");
+datas.misc = addDatas(datas.misc, "misc", "364539672376718715_173865844");
+datas.misc = addDatas(datas.misc, "misc", "364540275651609767_260185608");
+datas.misc = addDatas(datas.misc, "misc", "364540575610899880_26180066");
+datas.misc = addDatas(datas.misc, "misc", "364540913986330713_1689119");
+datas.misc = addDatas(datas.misc, "misc", "364540989472668904_267331438");
+datas.misc = addDatas(datas.misc, "misc", "364541506924696475_4887163");
+datas.misc = addDatas(datas.misc, "misc", "364542110275599555_11497430");
+datas.misc = addDatas(datas.misc, "misc", "364543187709987561_21708969");
+datas.misc = addDatas(datas.misc, "misc", "364543546386888109_173865844");
+datas.misc = addDatas(datas.misc, "misc", "364543599882788392_33507550");
+datas.misc = addDatas(datas.misc, "misc", "364543954227704299_4424235");
+datas.misc = addDatas(datas.misc, "misc", "364544462095336337_7445463");
+datas.misc = addDatas(datas.misc, "misc", "364544843688231687_7948887");
+datas.misc = addDatas(datas.misc, "misc", "364545356111265754_6455494");
+datas.misc = addDatas(datas.misc, "misc", "364546363633776086_173865844");
+datas.misc = addDatas(datas.misc, "misc", "364547105903531144_52009532");
+datas.misc = addDatas(datas.misc, "misc", "364548400156270759_1689119");
+datas.misc = addDatas(datas.misc, "misc", "364549875281773680_177961360");
+datas.misc = addDatas(datas.misc, "misc", "364550002287490108_25463500");
+datas.misc = addDatas(datas.misc, "misc", "364550226816448353_236077988");
+datas.misc = addDatas(datas.misc, "misc", "364550243331880381_12716292");
+datas.misc = addDatas(datas.misc, "misc", "364550476988660592_43156773");
+datas.misc = addDatas(datas.misc, "misc", "364550559399361826_37917766");
+datas.misc = addDatas(datas.misc, "misc", "364550696235206601_26318616");
+datas.misc = addDatas(datas.misc, "misc", "364550741071532598_216642851");
+datas.misc = addDatas(datas.misc, "misc", "364550761674165670_220428058");
+datas.misc = addDatas(datas.misc, "misc", "364550843311915799_32507879");
+datas.misc = addDatas(datas.misc, "misc", "364550886312313681_8353263");
+datas.misc = addDatas(datas.misc, "misc", "364550970759164798_25682027");
+datas.misc = addDatas(datas.misc, "misc", "364551303503932520_20084218");
+datas.misc = addDatas(datas.misc, "misc", "364551519888697981_3364825");
+datas.misc = addDatas(datas.misc, "misc", "364552078282102156_25332212");
+datas.misc = addDatas(datas.misc, "misc", "364552383007665436_13823178");
+datas.misc = addDatas(datas.misc, "misc", "364552798044097027_280709801");
+datas.misc = addDatas(datas.misc, "misc", "364553001431422084_52012004");
+datas.misc = addDatas(datas.misc, "misc", "364553720048595994_5120716");
+datas.misc = addDatas(datas.misc, "misc", "364553721249485972_52012004");
+datas.misc = addDatas(datas.misc, "misc", "364553753186013420_14708075");
+datas.misc = addDatas(datas.misc, "misc", "364553999238507929_202885970");
+datas.misc = addDatas(datas.misc, "misc", "364554413334576038_43156773");
+datas.misc = addDatas(datas.misc, "misc", "364554636210550362_173865844");
+datas.misc = addDatas(datas.misc, "misc", "364554651296883537_261429375");
+datas.misc = addDatas(datas.misc, "misc", "364555482724553360_5008571");
+datas.misc = addDatas(datas.misc, "misc", "364555554605162069_31172230");
+datas.misc = addDatas(datas.misc, "misc", "364555675285211907_41663729");
+datas.misc = addDatas(datas.misc, "misc", "364555891014426597_40383126");
+datas.misc = addDatas(datas.misc, "misc", "364556451856831938_26925052");
+datas.misc = addDatas(datas.misc, "misc", "364559085355779550_144714464");
+datas.misc = addDatas(datas.misc, "misc", "364559751735454355_217481577");
+datas.misc = addDatas(datas.misc, "misc", "364559814733975218_13846650");
+datas.misc = addDatas(datas.misc, "misc", "364560797241181455_221441536");
+datas.misc = addDatas(datas.misc, "misc", "364561476918961910_193200760");
+datas.misc = addDatas(datas.misc, "misc", "364562807255023604_18024174");
+datas.misc = addDatas(datas.misc, "misc", "364562864615208377_42478084");
+datas.misc = addDatas(datas.misc, "misc", "364562902675343233_10259080");
+datas.misc = addDatas(datas.misc, "misc", "364565118525929929_37673869");
+datas.misc = addDatas(datas.misc, "misc", "364565160777388558_209151955");
+datas.misc = addDatas(datas.misc, "misc", "364565224625109175_15458933");
+datas.misc = addDatas(datas.misc, "misc", "364566300661647271_252575256");
+datas.misc = addDatas(datas.misc, "misc", "364566727038984724_202421399");
+datas.misc = addDatas(datas.misc, "misc", "364567398682066288_16432174");
+datas.misc = addDatas(datas.misc, "misc", "364567591554299189_25463500");
+datas.misc = addDatas(datas.misc, "misc", "364568000564690294_16432174");
+datas.misc = addDatas(datas.misc, "misc", "364568270400887111_144037021");
 
+//monuments
+datas.monuments = [];
+datas.monuments = addDatas(datas.monuments, "monuments", "363364477849392837_144233412");
+datas.monuments = addDatas(datas.monuments, "monuments", "363367192307434624_6240256");
+datas.monuments = addDatas(datas.monuments, "monuments", "363368645432849165_32965651");
+datas.monuments = addDatas(datas.monuments, "monuments", "363372665651431715_220788937");
+datas.monuments = addDatas(datas.monuments, "monuments", "363934446946137587_16944140");
+datas.monuments = addDatas(datas.monuments, "monuments", "363935186133497348_16944140");
+datas.monuments = addDatas(datas.monuments, "monuments", "363940123693949367_230934743");
+datas.monuments = addDatas(datas.monuments, "monuments", "363940684480810120_3199770");
+datas.monuments = addDatas(datas.monuments, "monuments", "363940834358094342_264352841");
+datas.monuments = addDatas(datas.monuments, "monuments", "363941653338132870_3853075");
+datas.monuments = addDatas(datas.monuments, "monuments", "363944863305131953_51347136");
+datas.monuments = addDatas(datas.monuments, "monuments", "363946394444250576_1452190");
+datas.monuments = addDatas(datas.monuments, "monuments", "363948964036634051_38474504");
+datas.monuments = addDatas(datas.monuments, "monuments", "364026456368861777_45488443");
+datas.monuments = addDatas(datas.monuments, "monuments", "364026807891332968_51201346");
+datas.monuments = addDatas(datas.monuments, "monuments", "364032290335431408_235488525");
+datas.monuments = addDatas(datas.monuments, "monuments", "364034911505398786_15381966");
+datas.monuments = addDatas(datas.monuments, "monuments", "364041246794728698_1139752");
+datas.monuments = addDatas(datas.monuments, "monuments", "364046814142899756_211861640");
+datas.monuments = addDatas(datas.monuments, "monuments", "364046897972421176_41398751");
+datas.monuments = addDatas(datas.monuments, "monuments", "364047119675145182_231498949");
+datas.monuments = addDatas(datas.monuments, "monuments", "364054756990851576_2478781");
+datas.monuments = addDatas(datas.monuments, "monuments", "364058520471026196_41047125");
+datas.monuments = addDatas(datas.monuments, "monuments", "364059372233505316_41047125");
+datas.monuments = addDatas(datas.monuments, "monuments", "364060411170994738_41047125");
+datas.monuments = addDatas(datas.monuments, "monuments", "364061405355260474_41047125");
+datas.monuments = addDatas(datas.monuments, "monuments", "364064766828740945_251341023");
+datas.monuments = addDatas(datas.monuments, "monuments", "364066338722733236_196824022");
+datas.monuments = addDatas(datas.monuments, "monuments", "364070640087234471_185400796");
+datas.monuments = addDatas(datas.monuments, "monuments", "364071313197779668_210181041");
+datas.monuments = addDatas(datas.monuments, "monuments", "364072410681454498_5778082");
+datas.monuments = addDatas(datas.monuments, "monuments", "364079828315645985_54817281");
+datas.monuments = addDatas(datas.monuments, "monuments", "364088065457639424_274946011");
+datas.monuments = addDatas(datas.monuments, "monuments", "364091980758367945_220942798");
+datas.monuments = addDatas(datas.monuments, "monuments", "364094242048253020_241775838");
+datas.monuments = addDatas(datas.monuments, "monuments", "364097431119976451_17715629");
+datas.monuments = addDatas(datas.monuments, "monuments", "364098824778143763_17715629");
+datas.monuments = addDatas(datas.monuments, "monuments", "364102858166850063_29283923");
+datas.monuments = addDatas(datas.monuments, "monuments", "364106209219493462_186095686");
+datas.monuments = addDatas(datas.monuments, "monuments", "364109560589144652_29283923");
+datas.monuments = addDatas(datas.monuments, "monuments", "364112878129857204_175556231");
+datas.monuments = addDatas(datas.monuments, "monuments", "364118736945078646_235632871");
+datas.monuments = addDatas(datas.monuments, "monuments", "364122651524344196_8209617");
+datas.monuments = addDatas(datas.monuments, "monuments", "364123295626832268_8209617");
+datas.monuments = addDatas(datas.monuments, "monuments", "364145271581643503_1029291");
+datas.monuments = addDatas(datas.monuments, "monuments", "364146703835796217_1029291");
+datas.monuments = addDatas(datas.monuments, "monuments", "364152621242290454_216642851");
+datas.monuments = addDatas(datas.monuments, "monuments", "364370739522166744_2574342");
+datas.monuments = addDatas(datas.monuments, "monuments", "364372382356039481_273949824");
+datas.monuments = addDatas(datas.monuments, "monuments", "364374032746212428_53078514");
+datas.monuments = addDatas(datas.monuments, "monuments", "364379548583703241_679075");
+datas.monuments = addDatas(datas.monuments, "monuments", "364382171857889607_6766225");
+datas.monuments = addDatas(datas.monuments, "monuments", "364387366335032115_25995649");
+datas.monuments = addDatas(datas.monuments, "monuments", "364388904272673321_20204365");
+datas.monuments = addDatas(datas.monuments, "monuments", "364391400408495680_251040908");
+datas.monuments = addDatas(datas.monuments, "monuments", "364396162086068135_33507550");
+datas.monuments = addDatas(datas.monuments, "monuments", "364397472040567137_174250463");
+datas.monuments = addDatas(datas.monuments, "monuments", "364399301505995339_21832707");
+datas.monuments = addDatas(datas.monuments, "monuments", "364399549046837380_12569083");
+datas.monuments = addDatas(datas.monuments, "monuments", "364399568573947846_33507550");
+datas.monuments = addDatas(datas.monuments, "monuments", "364399804763755093_21832707");
+datas.monuments = addDatas(datas.monuments, "monuments", "364402018271435212_206060069");
+datas.monuments = addDatas(datas.monuments, "monuments", "364404707911221661_174250463");
+datas.monuments = addDatas(datas.monuments, "monuments", "364404835194628540_200748449");
+datas.monuments = addDatas(datas.monuments, "monuments", "364406151330611627_174250463");
+datas.monuments = addDatas(datas.monuments, "monuments", "364407370003307076_25486333");
+datas.monuments = addDatas(datas.monuments, "monuments", "364407694998171692_19274667");
+datas.monuments = addDatas(datas.monuments, "monuments", "364408097605746922_12771087");
+datas.monuments = addDatas(datas.monuments, "monuments", "364408910947762628_174250463");
+datas.monuments = addDatas(datas.monuments, "monuments", "364409438532029553_193925018");
+datas.monuments = addDatas(datas.monuments, "monuments", "364410354872042992_19187000");
+datas.monuments = addDatas(datas.monuments, "monuments", "364410693955770629_231461429");
+datas.monuments = addDatas(datas.monuments, "monuments", "364412065551738636_27661272");
+datas.monuments = addDatas(datas.monuments, "monuments", "364412435203310044_174250463");
+datas.monuments = addDatas(datas.monuments, "monuments", "364416102544111746_144011213");
+datas.monuments = addDatas(datas.monuments, "monuments", "364416817688953356_174250463");
+datas.monuments = addDatas(datas.monuments, "monuments", "364418255329421155_27661272");
+datas.monuments = addDatas(datas.monuments, "monuments", "364418266361606313_40392411");
+datas.monuments = addDatas(datas.monuments, "monuments", "364420453355255303_5242076");
+datas.monuments = addDatas(datas.monuments, "monuments", "364422933512667717_174250463");
+datas.monuments = addDatas(datas.monuments, "monuments", "364429312277730978_28235884");
+datas.monuments = addDatas(datas.monuments, "monuments", "364431016191376270_593629");
+datas.monuments = addDatas(datas.monuments, "monuments", "364431568947069609_174250463");
+datas.monuments = addDatas(datas.monuments, "monuments", "364431759796636119_3440801");
+datas.monuments = addDatas(datas.monuments, "monuments", "364432828597224122_174250463");
+datas.monuments = addDatas(datas.monuments, "monuments", "364433062170076703_725904");
+datas.monuments = addDatas(datas.monuments, "monuments", "364433200237724350_174250463");
+datas.monuments = addDatas(datas.monuments, "monuments", "364439559192459350_20204365");
+datas.monuments = addDatas(datas.monuments, "monuments", "364444038169026163_16521206");
+datas.monuments = addDatas(datas.monuments, "monuments", "364445620261738842_47542421");
+datas.monuments = addDatas(datas.monuments, "monuments", "364446026749581047_184858460");
+datas.monuments = addDatas(datas.monuments, "monuments", "364446916871121414_242201465");
+datas.monuments = addDatas(datas.monuments, "monuments", "364447543851808318_5740828");
+datas.monuments = addDatas(datas.monuments, "monuments", "364447869422636749_21696378");
+datas.monuments = addDatas(datas.monuments, "monuments", "364450116218451554_5740828");
+datas.monuments = addDatas(datas.monuments, "monuments", "364450632388427388_15242926");
+datas.monuments = addDatas(datas.monuments, "monuments", "364451363698940908_11552981");
+datas.monuments = addDatas(datas.monuments, "monuments", "364452165609155411_2009185");
+datas.monuments = addDatas(datas.monuments, "monuments", "364452553539098626_11552981");
+datas.monuments = addDatas(datas.monuments, "monuments", "364452888529770505_11552981");
+datas.monuments = addDatas(datas.monuments, "monuments", "364453679877494810_11552981");
+datas.monuments = addDatas(datas.monuments, "monuments", "364454283555280927_11552981");
+datas.monuments = addDatas(datas.monuments, "monuments", "364456239141132332_11552981");
+datas.monuments = addDatas(datas.monuments, "monuments", "364456470801969344_175913995");
+datas.monuments = addDatas(datas.monuments, "monuments", "364456507803080751_11552981");
+datas.monuments = addDatas(datas.monuments, "monuments", "364457110113523770_11552981");
+datas.monuments = addDatas(datas.monuments, "monuments", "364457865281181764_11552981");
+datas.monuments = addDatas(datas.monuments, "monuments", "364458696130861134_11552981");
+datas.monuments = addDatas(datas.monuments, "monuments", "364458786945931343_11552981");
+datas.monuments = addDatas(datas.monuments, "monuments", "364459561373250121_40392411");
+datas.monuments = addDatas(datas.monuments, "monuments", "364462806783662198_11552981");
+datas.monuments = addDatas(datas.monuments, "monuments", "364462858196536034_18617097");
+datas.monuments = addDatas(datas.monuments, "monuments", "364464321549325674_27979116");
+datas.monuments = addDatas(datas.monuments, "monuments", "364465472420300311_4030112");
+datas.monuments = addDatas(datas.monuments, "monuments", "364469540295650429_36599458");
+datas.monuments = addDatas(datas.monuments, "monuments", "364470090848160998_270909242");
+datas.monuments = addDatas(datas.monuments, "monuments", "364472938410186980_11552981");
+datas.monuments = addDatas(datas.monuments, "monuments", "364475468616361389_184353640");
+datas.monuments = addDatas(datas.monuments, "monuments", "364477397080468361_10402297");
+datas.monuments = addDatas(datas.monuments, "monuments", "364479236532900190_1660803");
+datas.monuments = addDatas(datas.monuments, "monuments", "364482482899191796_208570960");
+datas.monuments = addDatas(datas.monuments, "monuments", "364484903551332132_271137778");
+datas.monuments = addDatas(datas.monuments, "monuments", "364485307923947296_33507550");
+datas.monuments = addDatas(datas.monuments, "monuments", "364491518363683716_12063441");
+datas.monuments = addDatas(datas.monuments, "monuments", "364493528384214378_16884420");
+datas.monuments = addDatas(datas.monuments, "monuments", "364495365699520037_15814848");
+datas.monuments = addDatas(datas.monuments, "monuments", "364495852404596479_45822934");
+datas.monuments = addDatas(datas.monuments, "monuments", "364499350160500209_223057904");
+datas.monuments = addDatas(datas.monuments, "monuments", "364502287742027651_37182960");
+datas.monuments = addDatas(datas.monuments, "monuments", "364503294282629227_32507879");
+datas.monuments = addDatas(datas.monuments, "monuments", "364503910870912554_236643298");
+datas.monuments = addDatas(datas.monuments, "monuments", "364504327020233685_2737191");
+datas.monuments = addDatas(datas.monuments, "monuments", "364505008711878174_19187000");
+datas.monuments = addDatas(datas.monuments, "monuments", "364506508974101381_23913587");
+datas.monuments = addDatas(datas.monuments, "monuments", "364506532544491297_3957026");
+datas.monuments = addDatas(datas.monuments, "monuments", "364506908397671305_23913587");
+datas.monuments = addDatas(datas.monuments, "monuments", "364507476399606306_18629465");
+datas.monuments = addDatas(datas.monuments, "monuments", "364509742849959909_233223944");
+datas.monuments = addDatas(datas.monuments, "monuments", "364509956155484137_233223944");
+datas.monuments = addDatas(datas.monuments, "monuments", "364510709728938229_13453585");
+datas.monuments = addDatas(datas.monuments, "monuments", "364510976679580372_29153555");
+datas.monuments = addDatas(datas.monuments, "monuments", "364511407760313086_7632145");
+datas.monuments = addDatas(datas.monuments, "monuments", "364512570582732543_26904066");
+datas.monuments = addDatas(datas.monuments, "monuments", "364515288306931243_3138828");
+datas.monuments = addDatas(datas.monuments, "monuments", "364516814815244108_10983594");
+datas.monuments = addDatas(datas.monuments, "monuments", "364516974329785347_256420442");
+datas.monuments = addDatas(datas.monuments, "monuments", "364517618181859849_13791657");
+datas.monuments = addDatas(datas.monuments, "monuments", "364518217733194681_7742383");
+datas.monuments = addDatas(datas.monuments, "monuments", "364519853176343590_297514");
+datas.monuments = addDatas(datas.monuments, "monuments", "364522190268956536_16913742");
+datas.monuments = addDatas(datas.monuments, "monuments", "364525163509397132_5572764");
+datas.monuments = addDatas(datas.monuments, "monuments", "364525488166954703_7579376");
+datas.monuments = addDatas(datas.monuments, "monuments", "364525526851185791_256420442");
+datas.monuments = addDatas(datas.monuments, "monuments", "364531688234090958_179956087");
+datas.monuments = addDatas(datas.monuments, "monuments", "364533302640417751_11552981");
+datas.monuments = addDatas(datas.monuments, "monuments", "364534441215853034_179956087");
+datas.monuments = addDatas(datas.monuments, "monuments", "364535258929767318_188911863");
+datas.monuments = addDatas(datas.monuments, "monuments", "364536021990457570_1161231");
+datas.monuments = addDatas(datas.monuments, "monuments", "364537261979992580_194178455");
+datas.monuments = addDatas(datas.monuments, "monuments", "364537427060352881_7579376");
+datas.monuments = addDatas(datas.monuments, "monuments", "364537674268940607_49175773");
+datas.monuments = addDatas(datas.monuments, "monuments", "364537844703161626_182553578");
+datas.monuments = addDatas(datas.monuments, "monuments", "364538219580924994_26042856");
+datas.monuments = addDatas(datas.monuments, "monuments", "364540864602291497_37718822");
+datas.monuments = addDatas(datas.monuments, "monuments", "364541307974391890_1219421");
+datas.monuments = addDatas(datas.monuments, "monuments", "364545154325849569_25797984");
+datas.monuments = addDatas(datas.monuments, "monuments", "364547473280946157_242462898");
+datas.monuments = addDatas(datas.monuments, "monuments", "364548308779505702_5409453");
+datas.monuments = addDatas(datas.monuments, "monuments", "364548703823842316_175549082");
+datas.monuments = addDatas(datas.monuments, "monuments", "364549185523060622_214639258");
+datas.monuments = addDatas(datas.monuments, "monuments", "364549749520453557_282272034");
+datas.monuments = addDatas(datas.monuments, "monuments", "364550040762530745_54630077");
+datas.monuments = addDatas(datas.monuments, "monuments", "364550503041940412_54630077");
+datas.monuments = addDatas(datas.monuments, "monuments", "364550580379814981_236643298");
+datas.monuments = addDatas(datas.monuments, "monuments", "364551841645673417_54630077");
+datas.monuments = addDatas(datas.monuments, "monuments", "364552378383717487_25006396");
+datas.monuments = addDatas(datas.monuments, "monuments", "364553091566392445_25006396");
+datas.monuments = addDatas(datas.monuments, "monuments", "364553924909028505_275612900");
+datas.monuments = addDatas(datas.monuments, "monuments", "364554334539698193_53431107");
+datas.monuments = addDatas(datas.monuments, "monuments", "364554501204220427_49175773");
+datas.monuments = addDatas(datas.monuments, "monuments", "364554666443362329_53431107");
+datas.monuments = addDatas(datas.monuments, "monuments", "364554926884474908_53431107");
+datas.monuments = addDatas(datas.monuments, "monuments", "364555436301353538_190412943");
+datas.monuments = addDatas(datas.monuments, "monuments", "364556441104728623_19057095");
+datas.monuments = addDatas(datas.monuments, "monuments", "364563059422194714_1046466");
+datas.monuments = addDatas(datas.monuments, "monuments", "364563586596457576_282272034");
+datas.monuments = addDatas(datas.monuments, "monuments", "364563606334270493_1046466");
+datas.monuments = addDatas(datas.monuments, "monuments", "364565058251841168_7801974");
+datas.monuments = addDatas(datas.monuments, "monuments", "364566696009591894_1046466");
+datas.monuments = addDatas(datas.monuments, "monuments", "364569835630298095_179956087");
+datas.monuments = addDatas(datas.monuments, "monuments", "364570751183234538_3469488");
 
-function getData(city, loc){
-	var options = 
-			{ 
-				lat: city.locations[loc].lat,
-				lng: city.locations[loc].long,
-				distance: washington.locations[loc].distance,
-				complete: function(data){
-					var output = {};
-					output.csvPath = city.csvPath;
-					output.imagesPath = city.imagesPath;
-					output.city = city.name;
-					output.location = city.locations[loc];
-					output.data = data;
-				   	onResults(output);
-				}
-			};
+//outside
+datas.outside = [];
+datas.outside = addDatas(datas.outside, "outside", "363364098415875773_144233412");
+datas.outside = addDatas(datas.outside, "outside", "363364901406987978_144233412");
+datas.outside = addDatas(datas.outside, "outside", "363365451857727706_26417115");
+datas.outside = addDatas(datas.outside, "outside", "363934984333561671_230280642");
+datas.outside = addDatas(datas.outside, "outside", "363939254733115742_3853075");
+datas.outside = addDatas(datas.outside, "outside", "363940050728999002_22953925");
+datas.outside = addDatas(datas.outside, "outside", "363940172052259257_8627775");
+datas.outside = addDatas(datas.outside, "outside", "363940495559037489_8377883");
+datas.outside = addDatas(datas.outside, "outside", "363941208900739105_21427535");
+datas.outside = addDatas(datas.outside, "outside", "363943173581964812_15554608");
+datas.outside = addDatas(datas.outside, "outside", "363946869894020793_189717430");
+datas.outside = addDatas(datas.outside, "outside", "363948655435521553_46338526");
+datas.outside = addDatas(datas.outside, "outside", "364041308979173961_5409453");
+datas.outside = addDatas(datas.outside, "outside", "364070337376824335_254831674");
+datas.outside = addDatas(datas.outside, "outside", "364075931511301063_279410007");
+datas.outside = addDatas(datas.outside, "outside", "364086143048625064_32560905");
+datas.outside = addDatas(datas.outside, "outside", "364101969393247518_179503352");
+datas.outside = addDatas(datas.outside, "outside", "364163340417410330_31734904");
+datas.outside = addDatas(datas.outside, "outside", "364371151441142443_4930807");
+datas.outside = addDatas(datas.outside, "outside", "364371895385780719_23076723");
+datas.outside = addDatas(datas.outside, "outside", "364382972038676488_12771087");
+datas.outside = addDatas(datas.outside, "outside", "364384018940947400_200169985");
+datas.outside = addDatas(datas.outside, "outside", "364388696895961832_46637477");
+datas.outside = addDatas(datas.outside, "outside", "364391205343048508_679075");
+datas.outside = addDatas(datas.outside, "outside", "364391369791666715_189322461");
+datas.outside = addDatas(datas.outside, "outside", "364393929228953763_14740009");
+datas.outside = addDatas(datas.outside, "outside", "364405107840434794_235512735");
+datas.outside = addDatas(datas.outside, "outside", "364416263213308830_281783349");
+datas.outside = addDatas(datas.outside, "outside", "364417060531553221_1161231");
+datas.outside = addDatas(datas.outside, "outside", "364418849623409414_196924255");
+datas.outside = addDatas(datas.outside, "outside", "364419082715472726_54582119");
+datas.outside = addDatas(datas.outside, "outside", "364422040312514066_22712464");
+datas.outside = addDatas(datas.outside, "outside", "364424642590414098_243335004");
+datas.outside = addDatas(datas.outside, "outside", "364447387001668177_277715879");
+datas.outside = addDatas(datas.outside, "outside", "364452599802700693_4578399");
+datas.outside = addDatas(datas.outside, "outside", "364453159223631509_13034806");
+datas.outside = addDatas(datas.outside, "outside", "364457696743145285_224385526");
+datas.outside = addDatas(datas.outside, "outside", "364463873302030260_51347136");
+datas.outside = addDatas(datas.outside, "outside", "364473255608610837_6347971");
+datas.outside = addDatas(datas.outside, "outside", "364473468328371281_7579376");
+datas.outside = addDatas(datas.outside, "outside", "364473756123306222_11552981");
+datas.outside = addDatas(datas.outside, "outside", "364474751815792021_12716292");
+datas.outside = addDatas(datas.outside, "outside", "364477359442226238_4053706");
+datas.outside = addDatas(datas.outside, "outside", "364477964208814802_5772029");
+datas.outside = addDatas(datas.outside, "outside", "364485059663327018_271137778");
+datas.outside = addDatas(datas.outside, "outside", "364488165930430541_23786915");
+datas.outside = addDatas(datas.outside, "outside", "364494265986080826_261429375");
+datas.outside = addDatas(datas.outside, "outside", "364509195775574221_12771087");
+datas.outside = addDatas(datas.outside, "outside", "364511378282090505_269296507");
+datas.outside = addDatas(datas.outside, "outside", "364521626265706767_245380247");
+datas.outside = addDatas(datas.outside, "outside", "364523983599791997_3591242");
+datas.outside = addDatas(datas.outside, "outside", "364524167632283326_7579376");
+datas.outside = addDatas(datas.outside, "outside", "364525189348523628_10969926");
+datas.outside = addDatas(datas.outside, "outside", "364527797432391419_22903492");
+datas.outside = addDatas(datas.outside, "outside", "364528657861119311_16494290");
+datas.outside = addDatas(datas.outside, "outside", "364536505031794568_10781350");
+datas.outside = addDatas(datas.outside, "outside", "364539141187606395_22903492");
+datas.outside = addDatas(datas.outside, "outside", "364544005640384534_22078163");
+datas.outside = addDatas(datas.outside, "outside", "364544951616563173_7579376");
+datas.outside = addDatas(datas.outside, "outside", "364550411281660848_8342717");
+datas.outside = addDatas(datas.outside, "outside", "364564124514855379_15969");
+datas.outside = addDatas(datas.outside, "outside", "364564917012909176_282272034");
+datas.outside = addDatas(datas.outside, "outside", "364565527336867898_16704373");
+datas.outside = addDatas(datas.outside, "outside", "364566079490398725_11552981");
 
-	Instagram.media.search(options);
-}
+//people
+datas.people = [];
+datas.people = addDatas(datas.people, "people", "363361436440552701_51256880");
+datas.people = addDatas(datas.people, "people", "363364702873301087_7397923");
+datas.people = addDatas(datas.people, "people", "363366493063004563_7449911");
+datas.people = addDatas(datas.people, "people", "363368464310387108_7449911");
+datas.people = addDatas(datas.people, "people", "363369591202282605_213869766");
+datas.people = addDatas(datas.people, "people", "363934125105276925_26190696");
+datas.people = addDatas(datas.people, "people", "363938925490445987_227209838");
+datas.people = addDatas(datas.people, "people", "363939357407220311_20100675");
+datas.people = addDatas(datas.people, "people", "363940524768267177_18997977");
+datas.people = addDatas(datas.people, "people", "363941253151642799_723508");
+datas.people = addDatas(datas.people, "people", "363943851210562006_7421525");
+datas.people = addDatas(datas.people, "people", "363947012199906858_176178934");
+datas.people = addDatas(datas.people, "people", "363948148630290230_6289414");
+datas.people = addDatas(datas.people, "people", "363950794092363318_194036582");
+datas.people = addDatas(datas.people, "people", "363951215999829515_19723952");
+datas.people = addDatas(datas.people, "people", "363951445770632947_189717430");
+datas.people = addDatas(datas.people, "people", "363951826741196714_14969316");
+datas.people = addDatas(datas.people, "people", "364025357283211661_28596645");
+datas.people = addDatas(datas.people, "people", "364025729175370133_28596645");
+datas.people = addDatas(datas.people, "people", "364025841936596886_15083166");
+datas.people = addDatas(datas.people, "people", "364025991117721226_22191330");
+datas.people = addDatas(datas.people, "people", "364026440713877916_28596645");
+datas.people = addDatas(datas.people, "people", "364026705869388194_28596645");
+datas.people = addDatas(datas.people, "people", "364028587032376706_6972492");
+datas.people = addDatas(datas.people, "people", "364029253005493604_46023984");
+datas.people = addDatas(datas.people, "people", "364029273849435335_29197276");
+datas.people = addDatas(datas.people, "people", "364030044769328948_5145742");
+datas.people = addDatas(datas.people, "people", "364032476493109664_1886269");
+datas.people = addDatas(datas.people, "people", "364032907374344717_28596645");
+datas.people = addDatas(datas.people, "people", "364034980410098649_16077623");
+datas.people = addDatas(datas.people, "people", "364036484875279671_235289470");
+datas.people = addDatas(datas.people, "people", "364038724403103595_248205544");
+datas.people = addDatas(datas.people, "people", "364040387859308076_214474086");
+datas.people = addDatas(datas.people, "people", "364040438641584679_45721785");
+datas.people = addDatas(datas.people, "people", "364041113807779644_172460");
+datas.people = addDatas(datas.people, "people", "364041270473455162_6972492");
+datas.people = addDatas(datas.people, "people", "364042418285820580_28596645");
+datas.people = addDatas(datas.people, "people", "364043018868196481_49106632");
+datas.people = addDatas(datas.people, "people", "364043441702963821_23990257");
+datas.people = addDatas(datas.people, "people", "364043948821739362_172460");
+datas.people = addDatas(datas.people, "people", "364045685852697979_14969316");
+datas.people = addDatas(datas.people, "people", "364046699714511807_16217239");
+datas.people = addDatas(datas.people, "people", "364052817092060951_2614136");
+datas.people = addDatas(datas.people, "people", "364055833560495767_16784620");
+datas.people = addDatas(datas.people, "people", "364060498093867131_16217239");
+datas.people = addDatas(datas.people, "people", "364061524298648330_42243409");
+datas.people = addDatas(datas.people, "people", "364062718819650338_42243409");
+datas.people = addDatas(datas.people, "people", "364063295435787057_42243409");
+datas.people = addDatas(datas.people, "people", "364063686595698089_33507550");
+datas.people = addDatas(datas.people, "people", "364063786345515834_42243409");
+datas.people = addDatas(datas.people, "people", "364066700917033812_42243409");
+datas.people = addDatas(datas.people, "people", "364068215933215828_28598432");
+datas.people = addDatas(datas.people, "people", "364068686432239849_16217239");
+datas.people = addDatas(datas.people, "people", "364072054266635392_28598432");
+datas.people = addDatas(datas.people, "people", "364072055843457374_28183201");
+datas.people = addDatas(datas.people, "people", "364072826068903047_28598432");
+datas.people = addDatas(datas.people, "people", "364073462227737292_2478781");
+datas.people = addDatas(datas.people, "people", "364074419415644497_16096245");
+datas.people = addDatas(datas.people, "people", "364076416669951132_28598432");
+datas.people = addDatas(datas.people, "people", "364077639854826665_28598432");
+datas.people = addDatas(datas.people, "people", "364079696388259882_19552527");
+datas.people = addDatas(datas.people, "people", "364079701222139663_247034520");
+datas.people = addDatas(datas.people, "people", "364082523016070960_12829928");
+datas.people = addDatas(datas.people, "people", "364084810561811543_6972492");
+datas.people = addDatas(datas.people, "people", "364086142406808258_181219915");
+datas.people = addDatas(datas.people, "people", "364087286415199375_23975226");
+datas.people = addDatas(datas.people, "people", "364087894669322007_13544664");
+datas.people = addDatas(datas.people, "people", "364088808193108263_181730745");
+datas.people = addDatas(datas.people, "people", "364089866888392456_19668306");
+datas.people = addDatas(datas.people, "people", "364090561352931823_192350229");
+datas.people = addDatas(datas.people, "people", "364091795933793601_20504386");
+datas.people = addDatas(datas.people, "people", "364093053131183503_7011172");
+datas.people = addDatas(datas.people, "people", "364093901295048803_1886269");
+datas.people = addDatas(datas.people, "people", "364102975924663538_6972492");
+datas.people = addDatas(datas.people, "people", "364106403937361819_29272150");
+datas.people = addDatas(datas.people, "people", "364113922234742562_20846244");
+datas.people = addDatas(datas.people, "people", "364119248145552298_284746603");
+datas.people = addDatas(datas.people, "people", "364123581535878694_284749734");
+datas.people = addDatas(datas.people, "people", "364133977445185215_251484428");
+datas.people = addDatas(datas.people, "people", "364141492160224553_29793126");
+datas.people = addDatas(datas.people, "people", "364158016316591651_8522642");
+datas.people = addDatas(datas.people, "people", "364370271694500317_265701035");
+datas.people = addDatas(datas.people, "people", "364372788386656765_23076723");
+datas.people = addDatas(datas.people, "people", "364374811845487349_38052457");
+datas.people = addDatas(datas.people, "people", "364383984597926926_55224928");
+datas.people = addDatas(datas.people, "people", "364384688769549591_238508280");
+datas.people = addDatas(datas.people, "people", "364387965242343282_26808230");
+datas.people = addDatas(datas.people, "people", "364389076344065981_188215338");
+datas.people = addDatas(datas.people, "people", "364390506123388695_215650152");
+datas.people = addDatas(datas.people, "people", "364390926152035459_11352746");
+datas.people = addDatas(datas.people, "people", "364392354093291408_31731620");
+datas.people = addDatas(datas.people, "people", "364395574856933687_284951175");
+datas.people = addDatas(datas.people, "people", "364395871301951802_284951175");
+datas.people = addDatas(datas.people, "people", "364401010263541299_251375848");
+datas.people = addDatas(datas.people, "people", "364401608237406339_25561173");
+datas.people = addDatas(datas.people, "people", "364402317127444892_200748449");
+datas.people = addDatas(datas.people, "people", "364404736912476857_35737257");
+datas.people = addDatas(datas.people, "people", "364405720793342204_18005119");
+datas.people = addDatas(datas.people, "people", "364406920314833659_176890977");
+datas.people = addDatas(datas.people, "people", "364408260965906732_210511485");
+datas.people = addDatas(datas.people, "people", "364556240674821734_47981220");
+datas.people = addDatas(datas.people, "people", "364557903548455447_44021093");
+datas.people = addDatas(datas.people, "people", "364561007669342197_1046466");
+datas.people = addDatas(datas.people, "people", "364561097052646798_9354090");
+datas.people = addDatas(datas.people, "people", "364563041033346046_23965469");
+datas.people = addDatas(datas.people, "people", "364563136709562047_50094514");
+datas.people = addDatas(datas.people, "people", "364563490616544965_50094514");
+datas.people = addDatas(datas.people, "people", "364563825764887461_5222841");
+datas.people = addDatas(datas.people, "people", "364564045447466702_50094514");
+datas.people = addDatas(datas.people, "people", "364564444741380073_240205776");
+datas.people = addDatas(datas.people, "people", "364564616879443674_50094514");
+datas.people = addDatas(datas.people, "people", "364564905715994338_50094514");
+datas.people = addDatas(datas.people, "people", "364565298780999404_50094514");
+datas.people = addDatas(datas.people, "people", "364566120226439081_41938918");
+datas.people = addDatas(datas.people, "people", "364567311842471008_1046466");
+datas.people = addDatas(datas.people, "people", "364570268234321696_50094514");
+datas.people = addDatas(datas.people, "people", "364570753683066659_50094514");
 
-function onResults(data){
-	for(var i=0; i<data.data.length; i++){
-		var newImage = {};
+var groups = Object.keys(datas);
 
-		newImage.csvPath = data.csvPath;
-		newImage.imagesPath = data.imagesPath;
-		newImage.city = data.city;
-		
-		newImage.tags = data.data[i].tags;
-		newImage.imageUrl = data.data[i].images.low_resolution.url;
-		newImage.id = data.data[i].id;
-		newImage.username = data.data[i].user.username;
-		newImage.userId = data.data[i].user.id;
-		newImage.caption = ""; 
-		if(data.data[i].caption != null){
-			newImage.caption = data.data[i].caption.text;
-		}
-		
-		
-		getImage(newImage);
-	}
-}
-
-function getImage(data){
-	
-	var imgHost = "";
-	var imgPath = "";
-	var imgType = "jpg";
-
-	data.imageUrl = data.imageUrl.replace("https://", "");
-	data.imageUrl = data.imageUrl.replace("http://", "");
-
-	var slashSpot = data.imageUrl.indexOf("/");
-
-	imgHost = data.imageUrl.substring(0, slashSpot);
-	imgPath = data.imageUrl.replace(imgHost, "");
-
-	var dotSpot = imgPath.indexOf(".");
-	imgType = imgPath.substring(dotSpot+1);
-
-	data.savePath = data.imagesPath+data.id+"."+imgType
-	data.pngPath = data.imagesPath+data.id+".png";
-
-	options = {};
-	options.host = imgHost;
-	options.path = imgPath;
-	options.port = 80;
-
-	var request = http.get(options, function(res){
-	    var imagedata = ''
-	    res.setEncoding('binary')
-
-	    res.on('data', function(chunk){
-	        imagedata += chunk
-	    })
-
-	    res.on('end', function(){
-	        fs.writeFile(data.savePath, imagedata, 'binary', function(err){
-	            if (err) throw err
-	            getRGB(data);
-	        })
-	    })
-
+groups.forEach(function(group){
+	var data = datas[group];
+	data.forEach(function(image){
+		processImage(image);
 	});
+});
+
+
+function addDatas(datas, group, id){
+	var d = {};
+	d.group = group;
+	d.id = id;
+	datas[datas.length] = d;
+	return datas;
 }
 
-function getRGB(data){
-	easyimg.convert({src:data.savePath, dst:data.pngPath, quality:10}, function(err, image) {
+function processImage(data){
+	var pngPath = "./trial-images/"+data.group+"/"+data.id+".png";
+	gd.openPng(
+		pngPath,
+		function(png, path) {
+			if(png) {
 
-		gd.openPng(
-			data.pngPath,
-			function(png, path) {
-				if(png) {
+				var R = 0.0000;
+				var G = 0.0000;
+				var B = 0.0000;
+				var C = 0.0000;
 
-					var R = 0;
-					var G = 0;
-					var B = 0;
-					var C = 0;
+				for(var x=0; x<306; x++){
 
-					for(var x=0; x<306; x++){
-						for(var y=0; y<306; y++){
-							var pixel = png.getPixel(153,153);
-							R+= (pixel >>> 16) & 0xFF;
-							G+= (pixel >>> 8) & 0xFF;
-							B+= pixel & 0xFF;
-							C++;
-						}
+					var Ra = 0.0000;
+					var Ga = 0.0000;
+					var Ba = 0.0000;
+					var Ca = 0.0000;
+
+					for(var y=0; y<306; y++){
+
+						var pixel = png.getPixel(x,y);
+						var Rt = (pixel >>> 8) & 0xFF;
+						Ra+= Rt;
+						Ga+= (pixel >>> 8) & 0xFF;
+						Ba+= pixel & 0xFF;
+						Ca++;
+
 					}
 
-					data.colors = {};
-					data.colors.R = R/C;
-					data.colors.G = G/C;
-					data.colors.B = B/C;
+					R+=Ra/Ca;
+					G+=Ga/Ca;
+					B+=Ba/Ca;
+					C = C+1.0000;
 
-					addRow(data);
-					
 				}
+
+
+				data.colors = {};
+				data.colors.R = R/C;
+				data.colors.G = (G/C).toFixed(4);
+				data.colors.B = (B/C).toFixed(4);
+				addRow(data);
+				
 			}
-		);
-	});
+		}
+	);
 }
 
 function addRow(data){
-	var w = csv.createCsvFileWriter(data.csvPath, {'flags': 'a'});
+	var csvPath = "./data.csv";
+	var w = csv.createCsvFileWriter(csvPath, {'flags': 'a'});
 
 	var row = []
 	row[0]=data.id;
-	row[1]=data.city;
-	row[2]=data.username;
-	row[3]=data.userId;
-	row[4]=data.colors.R;
-	row[5]=data.colors.G;
-	row[6]=data.colors.B;
-	row[7]=""; //tags
-	row[8]=data.caption;
+	row[1]=data.group;
+	row[2]=data.colors.R;
+	row[3]=data.colors.G;
+	row[4]=data.colors.B;
 
 	w.writeRecord(row);
 }
