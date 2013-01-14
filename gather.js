@@ -1,6 +1,5 @@
 var oe = require('optimal-events');
 
-
 //REQUIRED MODULES
 oe.setData("csv", require("ya-csv"));
 oe.setData("config", require("./config.js"));
@@ -10,15 +9,14 @@ oe.setData("fs", require('fs'));
 oe.setData("gd", require('gd'));
 oe.setData("easyimg", require('easyimage'));
 
-
-
-
 var cities = {};
 //CITY DATA
 cities.washington = {};
 cities.washington.name = "washington";
 cities.washington.lat = "38.895111";
 cities.washington.long = "-77.036667";
+
+cities.
 
 oe.setData("cities", cities);
 
