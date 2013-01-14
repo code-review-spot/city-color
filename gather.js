@@ -1,52 +1,56 @@
+var oe = require('optimal-events');
+
+
 //REQUIRED MODULES
-var csv = require("ya-csv");
-var config = require("./config.js");
-var Instagram = require('instagram-node-lib');
-var http = require('http');
-var fs = require('fs');
-var gd = require('gd');
-var easyimg = require('easyimage');
+oe.setData("csv", require("ya-csv"));
+oe.setData("config", require("./config.js"));
+oe.setData("Instagram", require('instagram-node-lib'));
+oe.setData("http", require('http'));
+oe.setData("fs", require('fs'));
+oe.setData("gd", require('gd'));
+oe.setData("easyimg", require('easyimage'));
 
 
+
+
+var cities = {};
 //CITY DATA
-var washington = {};
-washington.csvPath = "./data/washington/data.csv";
-washington.imagesPath = "./data/washington/images/";
-washington.name = "Washington";
-washington.locations = [];
-washington.locations[0] = {};
-washington.locations[0].lat = "38.895111";
-washington.locations[0].long = "-77.036667";
-washington.locations[0].distance = "5000"; //meters
+cities.washington = {};
+cities.washington.name = "washington";
+cities.washington.lat = "38.895111";
+cities.washington.long = "-77.036667";
+
+oe.setData("cities", cities);
+
+
 Instagram.set('client_id',  config.instagram_client_id);
 
 
 module.exports.run = function(){
-	getData(washington, 0, onResults);
+	getData(cities.washington, 0, onResults);
 }
 
 
-function getData(city, loc){
-	var options = 
-			{ 
-				lat: city.locations[loc].lat,
-				lng: city.locations[loc].long,
-				distance: washington.locations[loc].distance,
-				complete: function(data){
-					var output = {};
-					output.csvPath = city.csvPath;
-					output.imagesPath = city.imagesPath;
-					output.city = city.name;
-					output.location = city.locations[loc];
-					output.data = data;
-				   	onResults(output);
-				}
-			};
+oe.setData("getCity", function(city){
+	var options = { 
+		lat: city.lat,
+		lng: city.long,
+		distance: 5000,
+		complete: function(data){
+			var output = {};
+			output.csvPath = csvPath(city.name);
+			output.imagesPath = imagesPath(city.name);
+			output.city = city.name;
+			output.location = city.locations[loc];
+			output.data = data;
+		   	public.onResults(output);
+		}
+	};
 
 	Instagram.media.search(options);
-}
+});
 
-function onResults(data){
+oe.setData("onResults", function(data){
 	for(var i=0; i<data.data.length; i++){
 		var newImage = {};
 
@@ -54,7 +58,6 @@ function onResults(data){
 		newImage.imagesPath = data.imagesPath;
 		newImage.city = data.city;
 		
-		newImage.tags = data.data[i].tags;
 		newImage.imageUrl = data.data[i].images.low_resolution.url;
 		newImage.id = data.data[i].id;
 		newImage.username = data.data[i].user.username;
@@ -67,7 +70,7 @@ function onResults(data){
 		
 		getImage(newImage);
 	}
-}
+});
 
 function getImage(data){
 	
