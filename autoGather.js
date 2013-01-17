@@ -1,4 +1,6 @@
 var tcp = require("easyTCP");
+var gatherPath = __dirname+"/gather";
+
 tcp.add("private", "status", false);
 tcp.add("public", "what", function(data, socket){
 	if(data=="status"){
@@ -14,7 +16,29 @@ tcp.add("public", "what", function(data, socket){
 	}
 });
 
+tcp.add("public", "get", function(data, socket){
+	var got = public.gather.get(data);
+	socket.writeln(data+" --> "+got);
+});
 
+tcp.add("private", "gatherPath", gatherPath);
+
+tcp.add("public", "start", function(data, socket){
+	public.gather.start();
+	private.status = true;
+	public.what("status", socket);
+});
+
+tcp.add("public", "stop", function(data, socket){
+	public.gather.stop();
+	private.status = false;
+	public.what("status", socket);
+});
+
+tcp.add("private", "confirmRunning", function(){
+	public.gather = require(private.gatherPath);
+	console.log("WE'RE RUNNING");
+})
 
 tcp.start();
 
